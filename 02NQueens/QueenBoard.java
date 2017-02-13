@@ -107,7 +107,7 @@ public class QueenBoard{
 
     public static void main (String[] args) {
 
-	QueenBoard a = new QueenBoard (4);
+	/*	QueenBoard a = new QueenBoard (4);
 	QueenBoard b = new QueenBoard (5);
 	QueenBoard c = new QueenBoard (6);
 	QueenBoard d = new QueenBoard (7);
@@ -137,7 +137,7 @@ public class QueenBoard{
 
 	System.out.println (e);
 	e.countSolutions();
-	System.out.println (e.getCount() +"\n");
+	System.out.println (e.getCount() +"\n"); */
 	
     } 
 }
