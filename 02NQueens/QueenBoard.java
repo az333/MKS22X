@@ -6,16 +6,18 @@ public class QueenBoard{
     
     public QueenBoard(int boardsize){
 	queenrows = new int[boardsize];
-	for (int i = 0; i < boardsize; i ++)  {
-	    queenrows[i] = -1;
-	}
-					      
+	clear();				      
 	solutionCount = -1;
     }
 
+    public void clear () {
+	for (int i = 0; i < queenrows.length; i ++)  {
+	    queenrows[i] = -1;
+	}
+    }
 
     public void solve () {
-	 putQueens(0); 
+	putQueens(0); 
     }
 
     
@@ -84,7 +86,7 @@ public class QueenBoard{
 
     }
 
-    public int getCount(){
+    public int getSolutionCount(){
 	
     	return solutionCount;
     }
@@ -107,11 +109,11 @@ public class QueenBoard{
 
     public static void main (String[] args) {
 
-	/*	QueenBoard a = new QueenBoard (4);
+	/*	QueenBoard a = new QueenBoard (0);
 	QueenBoard b = new QueenBoard (5);
 	QueenBoard c = new QueenBoard (6);
 	QueenBoard d = new QueenBoard (7);
-	QueenBoard e = new QueenBoard (8); 
+	QueenBoard e = new QueenBoard (10); 
 
 	a.solve();
 	b.solve();
@@ -119,25 +121,29 @@ public class QueenBoard{
 	d.solve();
 	e.solve();
 
+
 	System.out.println (a);
-	a.countSolutions();
-	System.out.println (a.getCount() +"\n");
+	a.countSolutions();  
+	System.out.println (a.getSolutionCount() +"\n");
 
 	System.out.println (b);
 	b.countSolutions();
-	System.out.println (b.getCount() +"\n");
+	System.out.println (b.getSolutionCount() +"\n");
 
 	System.out.println (c);
 	c.countSolutions();
-	System.out.println (c.getCount() +"\n");
+	System.out.println (c.getSolutionCount() +"\n");
 
 	System.out.println (d);
 	d.countSolutions();
-	System.out.println (d.getCount() +"\n");
+	System.out.println (d.getSolutionCount() +"\n");
 
 	System.out.println (e);
 	e.countSolutions();
-	System.out.println (e.getCount() +"\n"); */
+	System.out.println (e.getSolutionCount() +"\n"); */
+
+	
+	
 	
     } 
 }
