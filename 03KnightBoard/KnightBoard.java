@@ -36,19 +36,7 @@ public class KnightBoard {
 	}       
 	return counter; 
     } 
-    
-    // insertion sort (sorts moves by increasing degree)
-    public void degreeSort () {
-	for (int i = 1; i < moves.size(); i ++) {
-	    Point temp = moves.get(i);
-	    int tempdegree = temp.getDegree();     
-	    int x = i - 1;
-	    for (; x > -1  && tempdegree < moves.get(x).getDegree(); x --) { 
-		moves.set(x + 1, moves.get(x)); 		    
-	    }
-	    moves.set(x + 1, temp);
-	}
-    }
+  
 
     // puts all of the possible moves in an array and calls degreeSort();
     public void possMoves (int row, int col) { 
@@ -128,8 +116,8 @@ public class KnightBoard {
 
 
     public static void main (String[] args) {
-	if (args.length == 0 ) { 
-	    for (int i = 0; i < 50 ; i ++) {
+	if (args.length == 0 ) {
+	    for (int i = 0; i < 77 ; i ++) {
 
 		KnightBoard a = new KnightBoard (i,i);
 		
@@ -139,9 +127,9 @@ public class KnightBoard {
 
 		long endTime = System.nanoTime();
 
-		System.out.println("That took " + ((endTime - startTime) / 1000000.) + " milliseconds");
+		//System.out.println("That took " + ((endTime - startTime) / 1000000.) + " milliseconds");
 	    
-		System.out.println ("Board Size: " + i  + " x " + i + "\n" + a + "\n\n\n\n\n\n");
+		//System.out.println ("Board Size: " + i  + " x " + i + "\n" + a + "\n\n\n\n\n\n");
 	   
 	    }
 	}
@@ -160,7 +148,7 @@ public class KnightBoard {
 	    
 	    System.out.println("That took " + ((endTime - startTime) / 1000000.) + " milliseconds");
 	    
-	    System.out.println ("Board Size: " + x + " x " + y + "\n" + b + "\n\n\n\n\n\n");
+	    System.out.println ("Board Size: " + x + " x " + y + "\n\n\n\n\n\n");
 	    
 	}
     } 
