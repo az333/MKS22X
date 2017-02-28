@@ -47,9 +47,6 @@ public class QueenBoard{
 	
     }
 
-
-
-
     public boolean isLegit (int queenc, int r) {
 	// only go up to queenc because there are no queens placed further than this
 	for (int col = 0; col < queenc; col ++) {
