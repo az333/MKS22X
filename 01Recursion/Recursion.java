@@ -24,14 +24,14 @@ public class  Recursion {
 	}
     }
     
-    public static double sqrt (int n) {
+    public static double sqrt (double n) {
 	if ( n < 0) {
 	    throw new IllegalArgumentException();
 	}
 	return  sqrthelp(n, 1);
     }
 
-    private static double sqrthelp (int n, double  guess) {
+    private static double sqrthelp (double n, double  guess) {
 	if (n == 0) {
 	    return 0;
 	}
