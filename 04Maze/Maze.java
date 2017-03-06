@@ -102,11 +102,9 @@ public class Maze {
 
 	return false;
 	
-
-
-    } 
+    }
     
-
+    
     public String toString() {
 	String str = "";
 	for (int r = 0; r <  maze.length; r ++) {
@@ -120,10 +118,12 @@ public class Maze {
 
     } 
 
+    
     public void clearTerminal(){
         //erase terminal, go to top left of screen.
         System.out.println("\033[2J\033[1;1H");
     }
+
     
     public static void main(String args[]) {    
 
