@@ -8,10 +8,9 @@ public class Maze {
     private char[][] maze;
     private boolean animate; 
     
-    private static final int[] xShift = {-1 ,-1, -1, 0,  0,  1 ,1, 1};
-    private static final int[] yShift = {-1,  0,  1, 1, -1 ,-1, 0, 1};
-    private int startX, startY, endX, endY;
-    private ArrayList<Point> possMoves = new ArrayList<Point>(); 
+    private static final int[] xShift = {-1, 0,  0 ,1};
+    private static final int[] yShift = { 0, 1, -1, 0};
+    private int startX, startY;
 
     public Maze (String og) {
 	try {
@@ -27,13 +26,13 @@ public class Maze {
 		numrows ++; 
 	    }
 
-	    if (txtstr.indexOf('S') == -1) {
+	    if (textstr.indexOf('S') == -1) {
 		System.out.println("There is no start");
 		System.exit(1);
 	    }
-	    if (txtstr.indexOf('E') == -1) {
+	    if (textstr.indexOf('E') == -1) {
 		System.out.println("There is no end");
-		System.out.exit(1);
+		System.exit(1);
 	    } 
 	
 	    maze = new char[numrows][numcols];
@@ -53,10 +52,6 @@ public class Maze {
 			startX = row;
 			startY = c;
 		    }
-		    if (textstr.charAt(i) == 'E') {
-			endX = row;
-			endY = c;
-		    } 
 		    i ++;
 
 		} 
@@ -66,55 +61,44 @@ public class Maze {
 	    System.exit(1);
 	    
 	} 
-
 	setAnimate(false); 
-
     }
+    
 
     public void setAnimate (boolean b) {
 	animate = b; 
     }
     
-    public void possMoves (int row, int col) {
-	possMoves.clear();
-	for (int i = 0; i < xShift.length; i ++) {
 
-	    if ( isValid (row + xShift[i], col + yShift[i])) {
-		possMoves.add(new Point(row + xShift[i], col + yShift[i])); 
-	    }
-	}
+ 
 
-    } 
-
-
-    public boolean isValid (int row, int col) {
-	return maze[row][col] != '#' && maze[row][col] != ".";
-    } 
-    
-
-    public void solve () {
+    public boolean solve () {
 	maze[startX][startY] = ' ';
-	solvehelp (startX, startY); 
+	return solvehelp (startX, startY); 
     }
 
     public boolean solvehelp (int r, int c) {
-	if (r == endX && c == endY) {
+
+	if (maze[r][c] == 'E') {
 	    return true;
 	}
 
-	possMoves(r, c);
+	if (maze[r][c] != ' '){
+	    return false;
+	}
 
-	for (int i = 0; i < possMoves.size(); i++) {
-	    Point nextMove = possMoves.get(i);
-	    int x = nextMove.getX();
-	    int y = nextMove.getX();
-	    
-	    if (maze[x][y] == ' ') { 
-		// sqaures that were visited are marked with a '.' 
-		maze[x][y] = '.';
+	maze[r][c] = '@';
+	
+ 	for (int i = 0; i < xShift.length; i++) {
+	    int x = r + xShift[i]; 
+	    int y = c + yShift[i];
+
+	    if (solvehelp (x,y)) {		
+		return true;
 	    } 
+	}
 
-	} 
+	maze[r][c] = '.';
 
 	return false;
 	
@@ -141,64 +125,15 @@ public class Maze {
         System.out.println("\033[2J\033[1;1H");
     }
     
-    public static void main(String args[]) {
+    public static void main(String args[]) {    
 
-      
- 
+	
 	Maze a = new Maze (args[0]);
+	System.out.println(a);
+	a.solve();
 	System.out.println(a);
        
     }
+
+
 }   
-
-
-class Point implements Comparable<Point> {
-    private int  x, y, degree;
-    private double distance;
-    
-    // Constructors
-    public Point (int x, int y, int degree, double distance) {
-	this.x = x;
-	this.y = y;
-	this.degree = degree;
-	this.distance = distance;
-    }
-
-    public Point (int x, int y) {
-	this (x, y, 0, 0);
-    }
-  
-    public int getX () {return x;}
-    
-    public int getY () {return y;}
-
-    public int getDegree() {return degree;}
-
-    public double getDistance() {return distance;}
-    
-    public void changeX (int x) {this.x = x;}
-    
-    public void changeY (int y) {this.y = y;}
-    
-    public void changeDegree (int degree) {this.degree = degree;}
-
-    public double distance (Point other){
-	return Math.sqrt(Math.pow(other.x - x,2.) + Math.pow(other.y - y,2.));
-    }
-
-    public int compareTo(Point other) {
-	if (degree == other.getDegree()) {
-
-	    return Double.compare(other.getDistance(), distance);
-	
-       
-	}
-	return Integer.compare(degree, other.getDegree()); 
-    }
-
-    public String toString() {
-	return "(" + x  + "," + y  + ")";
-    } 
-    
-}
-
