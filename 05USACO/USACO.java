@@ -174,7 +174,7 @@ public class USACO {
 
     public static void main (String[] a) {
 
-	//	System.out.println(silver ("Test2.txt"));
+       	System.out.println(bronze (a[0]));
     } 
 
 
