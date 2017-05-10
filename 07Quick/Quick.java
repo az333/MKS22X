@@ -2,17 +2,14 @@ import java.util.*;
 
 public class Quick {
 
-    public static int part (int[] data, int left, int right) {
+    public static int[] part (int[] data, int left, int right) {
 	Random rand = new Random ();
 	int pivotIndex = rand.nextInt((right - left) + 1) +  left;
 	int pivot = data[pivotIndex];
 	data = swap (data, pivotIndex, left);
-	int lt = left;
-	int gt = right;
-	int i = left;     
-  
-	while (i <= gt) {
-	    
+	
+	int lt = left, gt = right, i = left;     
+	while (i <= gt) {	    
 	    if (data[i] == pivot)  {
 		i ++;
 	    } else  if (data[i] < pivot) {
@@ -23,8 +20,9 @@ public class Quick {
 	        swap(data, i, gt);
                 gt--;
 	    } 
-	}        
-	return lt;
+	}
+	int[] a = {lt, gt};
+	return a;
 	
     }
       
@@ -40,7 +38,7 @@ public class Quick {
 	if(left == right){
 	    return data[k];
 	}
-	int pivotIndex = part(data, left, right);
+	int pivotIndex = part(data, left, right)[0];
 	if(pivotIndex == k){
 	    return data[k];
 	}if(k < pivotIndex){
@@ -64,31 +62,10 @@ public class Quick {
 	if (left >= right) {
 	    return;
 	}
-	Random rand = new Random ();
-	int pivotIndex = rand.nextInt((right - left) + 1) +  left;
-	int pivot = data[pivotIndex];
 
-	data = swap (data, pivotIndex, left);
+	int[] a  = part(data, left, right);
+	int lt = a[0], gt = a[1];
 
-	int lt = left;
-	int gt = right;
-	int i = left; 
-        
-      
-	while (i <= gt) {
-	    
-	    if (data[i] == pivot)  {
-		i ++;
-	    } else  if (data[i] < pivot) {
-		data = swap (data, i, lt); 
-		lt ++;
-		i ++;  
-	    } else {
-	        swap(data, i, gt);
-                gt--;
-	    } 
-	
-	}
 
 	if ( lt > 0) { 
 	    quicksort(data, left, lt-1);
@@ -117,20 +94,18 @@ public class Quick {
  
     public static void main(String[] args){
 	int[]ary = { 2, 10, 15, 23, 0,  5, 5, 5, 5, 5, 5, 5};
-	int[] ary2 = new int[Integer.MAX_VALUE];
+	int[]ary2 = new int[10000000];
+	int[]ary3 = {};
 
 	for (int i = 0; i < ary2.length; i ++) {
-	    ary2[i] = 1;
+	    ary2[i] = 1; 
 	}
 
-	for ( int i = 0; i < ary2.length; i ++) {
-	    //quickselect (ary2,i);
 
-	}
 
-	quicksort(ary2);
+	quicksort(ary3);
 
-	System.out.println (toString(ary));
+	System.out.println (toString(ary3));
 
 	//System.out.println ("DONE");
 						 

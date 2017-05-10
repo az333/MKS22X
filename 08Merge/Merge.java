@@ -39,13 +39,21 @@ public class Merge {
     } 
 
     public static void main (String args[]) {
-	int[] a = { 1, 3, 4, 6};
+	/*int[] a = { 1, 3, 4, 6};
 	int[] b = { 1, 2, 2, 8, 10, 11};
-        
 
-	mergesort (a);
 
-	System.out.println (toString(a));
+	int[] c = new int[1000];
+
+	Random ran = new Random(); 
+
+	for (int i = 0; i < c.length; i ++) {
+	    c[i] = ran.nextInt() % 1000;
+	}
+
+	mergesort (c);
+
+	System.out.println (toString(c)); */ 
 	
 
     } 
